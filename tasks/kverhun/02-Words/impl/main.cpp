@@ -20,6 +20,14 @@ namespace
     return dictionary;
   }
 
+  std::string _ReadStringFromFile(const std::string& i_file_name)
+    {
+    std::ifstream file(i_file_name);
+    std::string string_read;
+    file >> string_read;
+    return string_read;
+    }
+
   std::vector<size_t> _Split(const std::string& i_input, const std::set<std::string>& i_dictionary)
   {
     std::vector<size_t> lengths;
@@ -67,10 +75,13 @@ int main(int i_argc, char** i_argv)
   if (i_argc < 3)
     return 1;
 
+  system("pause");
+
   std::string dictionary_file_name(i_argv[1]);
   auto dictionary = _ReadDictionaryFromFile(dictionary_file_name);
 
-  std::string str_to_split(i_argv[2]);
+  std::string str_to_split_file(i_argv[2]);
+  std::string str_to_split = _ReadStringFromFile(str_to_split_file);
   auto lengths = _Split(str_to_split, dictionary);
 
   auto words = _ConvertToWords(str_to_split, lengths);
