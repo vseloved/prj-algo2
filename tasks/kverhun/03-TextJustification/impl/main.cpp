@@ -30,8 +30,6 @@ namespace
     return result;
   }
 
-  const size_t g_max_line_width = 10;
-
   double _CalculateStringBadness(size_t i_str_lng, size_t i_max_string_lng)
   {
     double diff = static_cast<double>(i_max_string_lng - i_str_lng);
@@ -57,13 +55,13 @@ namespace
       
       size_t last_index_to_check = i_words.size();
       
-      size_t current_lng = i_words[i_word_from].size();
+      size_t current_lng = 0;
       
-      double best_cost = _CalculateStringBadness(current_lng, i_max_line_lng) + dp_vals[i_word_from + 1];
+      double best_cost = std::numeric_limits<double>::max();
       size_t best_lng = 1;
-      for (size_t lng = 2; i_word_from + lng <= last_index_to_check; ++lng)
+      for (size_t lng = 1; i_word_from + lng <= last_index_to_check && current_lng + i_words[i_word_from + lng - 1].size() + (lng > 1 ? 1 : 0) <= i_max_line_lng; ++lng)
       {
-        current_lng += (i_words[i_word_from + lng - 1].size() + 1);
+        current_lng += (i_words[i_word_from + lng - 1].size() + (lng > 1 ? 1 : 0));
         double current_cost = _CalculateStringBadness(current_lng, i_max_line_lng) + dp_vals[i_word_from + lng];
         if (current_cost < best_cost)
         {
@@ -114,8 +112,6 @@ namespace
 
 int main(int i_argc, char** i_argv)
 {
-  system("pause");
-
   std::string string_to_justify = [i_argc, i_argv]() -> std::string
   {
     std::string filename(i_argv[1]);
@@ -135,8 +131,13 @@ int main(int i_argc, char** i_argv)
   std::cout << "cost: " << result.first << std::endl;
   for (const auto& line : lines)
   {
-    for (const auto& word : line)
-      std::cout << word << " ";
+    size_t current_width = 0;
+    for(size_t i = 0; i < line.size(); ++i)
+    {
+      std::cout << line[i] << (i + 1 < line.size() ? " " : "");
+      current_width += line[i].size() + (i + 1 < line.size() ? 1 : 0);
+    }
+    std::cout << std::string(max_line_lng - current_width, '=');
     std::cout << std::endl;
   }
 
