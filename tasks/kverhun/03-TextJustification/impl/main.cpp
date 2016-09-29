@@ -125,7 +125,6 @@ int main(int i_argc, char** i_argv)
     stream << max_lng_string;
     size_t max_lng;
     stream >> max_lng;
-    std::cout << max_lng;
     return max_lng;
   }();
 
