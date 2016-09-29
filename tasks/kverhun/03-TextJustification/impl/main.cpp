@@ -32,14 +32,14 @@ namespace
 
   const size_t g_max_line_width = 10;
 
-  double _CalculateStringBadness(size_t i_str_lng)
+  double _CalculateStringBadness(size_t i_str_lng, size_t i_max_string_lng)
   {
-    double diff = static_cast<double>(g_max_line_width - i_str_lng);
+    double diff = static_cast<double>(i_max_string_lng - i_str_lng);
     return diff*diff*diff;
   }
 
 
-  std::pair<double, std::vector<size_t>> _GetPartition(const std::vector<std::string>& i_words)
+  std::pair<double, std::vector<size_t>> _GetPartition(const std::vector<std::string>& i_words, size_t i_max_line_lng)
   {
     std::vector<std::vector<double>> badness_matrix(i_words.size());
     for (auto& badness_row : badness_matrix)
@@ -59,21 +59,21 @@ namespace
       
       size_t current_lng = i_words[i_word_from].size();
       
-      double best_cost = _CalculateStringBadness(current_lng) + dp_vals[i_word_from + 1];
-      size_t best_cost_arg = 1;
-      for (size_t j = 1; i_word_from + j < last_index_to_check; ++j)
+      double best_cost = _CalculateStringBadness(current_lng, i_max_line_lng) + dp_vals[i_word_from + 1];
+      size_t best_lng = 1;
+      for (size_t lng = 2; i_word_from + lng <= last_index_to_check; ++lng)
       {
-        current_lng += (i_words[i_word_from + j].size() + 1);
-        double current_cost = _CalculateStringBadness(current_lng) + dp_vals[i_word_from + j + 1];
+        current_lng += (i_words[i_word_from + lng - 1].size() + 1);
+        double current_cost = _CalculateStringBadness(current_lng, i_max_line_lng) + dp_vals[i_word_from + lng];
         if (current_cost < best_cost)
         {
           best_cost = current_cost;
-          best_cost_arg = j + 1;
+          best_lng = lng;
         }
       }
 
       dp_vals[i_word_from] = best_cost;
-      argmins[i_word_from] = best_cost_arg;
+      argmins[i_word_from] = best_lng;
     };
 
     for (size_t i = i_words.size() + 1; i > 0; --i)
@@ -90,10 +90,10 @@ namespace
     return std::make_pair(dp_vals[0], line_lengths);
   }
 
-  std::pair<double, std::vector<size_t>> _GetJustifiedStringPartition(const std::string& i_string_to_justify)
+  std::pair<double, std::vector<size_t>> _GetJustifiedStringPartition(const std::string& i_string_to_justify, size_t i_max_line_lng)
   {
     auto words_list = _SplitStringByDelimiter(i_string_to_justify, " ");
-    return _GetPartition(words_list);
+    return _GetPartition(words_list, i_max_line_lng);
   }
   
   std::vector<std::vector<std::string>> _GetLines(const std::vector<std::string>& i_words, const std::vector<size_t>& i_partition)
@@ -122,7 +122,14 @@ int main(int i_argc, char** i_argv)
     return _ReadStringFromFile(filename);
   }();
 
-  auto result = _GetJustifiedStringPartition(string_to_justify);
+  size_t max_line_lng = []() ->size_t
+  {
+    size_t input;
+    std::cin >> input;
+    return input;
+  }();
+
+  auto result = _GetJustifiedStringPartition(string_to_justify, max_line_lng);
   auto lines = _GetLines(_SplitStringByDelimiter(string_to_justify, " "), result.second);
 
   std::cout << "cost: " << result.first << std::endl;
