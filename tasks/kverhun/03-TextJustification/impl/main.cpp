@@ -84,7 +84,7 @@ namespace
       line_lengths.push_back(argmins[index]);
       index += argmins[index];
     }
-
+    
     return std::make_pair(dp_vals[0], line_lengths);
   }
 
@@ -118,11 +118,15 @@ int main(int i_argc, char** i_argv)
     return _ReadStringFromFile(filename);
   }();
 
-  size_t max_line_lng = []() ->size_t
+  size_t max_line_lng = [&]() ->size_t
   {
-    size_t input;
-    std::cin >> input;
-    return input;
+    std::string max_lng_string(i_argv[2]);
+    std::stringstream stream;
+    stream << max_lng_string;
+    size_t max_lng;
+    stream >> max_lng;
+    std::cout << max_lng;
+    return max_lng;
   }();
 
   auto result = _GetJustifiedStringPartition(string_to_justify, max_line_lng);
