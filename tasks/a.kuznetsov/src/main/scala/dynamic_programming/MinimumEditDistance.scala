@@ -55,26 +55,17 @@ object MinimumEditDistance {
 
   def min(a: Int, b: Int, c: Int) = Math.min(a, Math.min(b, c))
 
-  def minCostOp(cost: Array[Array[Int]], i: Int, j: Int) = {
-    min(
-      cost(i - 1)(j),
-      cost(i)(j - 1),
-      cost(i - 1)(j - 1)
-    )
-  }
+  def minCostOp(cost: Array[Array[Int]], i: Int, j: Int) = min(cost(i - 1)(j), cost(i)(j - 1), cost(i - 1)(j - 1))
 
-  def applyChanges(s: String, transformations: List[Operation]): String = {
-    val xs = s.split("")
-    val result = transformations
-      .foldLeft(List[String]())((acc: List[String], op: Operation) =>
+  def applyChanges(s: String, transformations: List[Operation]): String =
+    transformations
+      .foldLeft("")((acc: String, op: Operation) =>
         op match {
-          case NillOp(x) => acc ++ Seq(xs(x))
-          case Replace(_, _, _, to) => acc ++ Seq(to)
-          case Insert(_, x) => acc ++ Seq(x)
+          case NillOp(x) => acc + s(x)
+          case Replace(_, _, _, to) => acc + to
+          case Insert(_, x) => acc + x
           case Delete(_) => acc
         })
-    result.foldLeft("")((acc, x) => acc + x)
-  }
 }
 
 object Operations {
