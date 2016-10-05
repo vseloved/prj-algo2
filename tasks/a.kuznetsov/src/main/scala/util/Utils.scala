@@ -3,7 +3,7 @@ package util
 object Utils {
   def printMatrix[T](xs: Array[Array[T]], replace: T, withValue: T): Unit = {
     for (l <- xs) {
-      printArray(l,replace, withValue)
+      printArray(l, replace, withValue)
     }
   }
 
