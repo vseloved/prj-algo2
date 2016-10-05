@@ -115,18 +115,57 @@ namespace
         return std::make_pair(w1_aligned, w2_aligned);
     }
 
-    
+}
+
+namespace Tests
+{
+    class Test
+    {
+    public:
+        Test(
+            const std::string& i_w1, const std::string& i_w2,
+            const std::string& i_w1_aligned_expected, const std::string& i_w2_alinged_expected)
+        { }
+
+        bool Run() const
+        {
+            auto aligned_words = _AlingWords(m_w1, m_w2);
+            bool first_ok = (aligned_words.first == m_w1_expected);
+            bool second_ok = (aligned_words.second == m_w2_expected);
+            return first_ok && second_ok;
+        }
+
+    private:
+        const std::string m_w1;
+        const std::string m_w2;
+        const std::string m_w1_expected;
+        const std::string m_w2_expected;
+    };
 }
 
 int main(int i_argc, char** i_argv)
 {
-    std::string w1, w2;
-    std::cin >> w1 >> w2;
+    if (i_argc == 1)
+    {
+        std::string w1, w2;
+        std::cin >> w1 >> w2;
 
-    auto aliged_words = _AlingWords(w1, w2);
+        auto aligned_words = _AlingWords(w1, w2);
+        std::cout << aligned_words.first << std::endl << aligned_words.second << std::endl;
 
-    std::cout << aliged_words.first << std::endl << aliged_words.second;
-    std::cout << std::endl;
+    }
+    else if (i_argc == 2 && std::string(i_argv[1]) == "--test")
+    {
+        Tests::Test test1("abc", "ac", "abc", "a_c");
+        Tests::Test test2("fyord", "world", "fyor_d", "_world");
+        Tests::Test test3("abcd", "abcd", "abcd", "abcd");
+
+        for (auto& test : { test1, test2, test3 })
+        {
+            bool result = test.Run();
+            std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
+        }
+    }
 
     return 0;
 }
