@@ -1,7 +1,5 @@
 package lesson2.text_justification;
 
-import java.util.Arrays;
-
 /**
  * Created by dmitin on 24.09.16.
  */
@@ -50,8 +48,7 @@ public class App {
         for (int i = words.length - 1; i >= 0; i--) {
             int min = Integer.MAX_VALUE;
             for (int j = i + 1; j <= words.length; j++) {
-                int badness = lineBadness(i, j, words);
-                int tmp = sumOrInfinity(dp[j], badness);
+                int tmp = sumOrInfinity(dp[j], lineBadness(i, j, words));
                 if (tmp < min) {
                     min = tmp;
                     starts[i] = j;
