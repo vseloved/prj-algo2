@@ -1,0 +1,48 @@
+Montgomery 3222 8618
+Phoenix 3326 1125
+Little Rock 3444 9217
+Sacramento 3834 12129
+Denver 3944 10459
+Hartford 4145 7240
+Dover 3990 7531
+Tallahassee 3026 8416
+Atlanta 3344 8423
+Boise 4337 11611
+Springfield 3947 8939
+Indianapolis 3946 8690
+Des Moines 4135 9336
+Topeka 3920 9540
+Frankfort 3811 8452
+Baton Rouge 3027 9111
+Augusta 4418 6946
+Annapolis 3858 7629
+Boston 4221 7130
+Lansing 4244 8433
+Saint Paul 4457 9360
+Jackson 3218 9010
+Jefferson City 3834 9210
+Helena 4635 1121
+Lincoln 4048 9641
+Carson City 3990 11945
+Concord 4312 7132
+Trenton 4013 7446
+Santa Fe 3540 10556
+Albany 4239 7345
+Raleigh 3546 7838
+Bismarck 4649 10046
+Columbus 3957 8259
+Oklahoma City 3529 9730
+Salem 4456 1231
+Harrisburg 4015 7652
+Providence 4149 7124
+Columbia 3400 811
+Pierre 4422 10020
+Nashville 3609 8647
+Austin 3016 9744
+Salt Lake City 4046 11153
+Montpelier 4415 7234
+Richmond 3732 7726
+Olympia 4702 12254
+Charleston 3820 8136
+Madison 4304 8923
+Cheyenne 4108 10449
