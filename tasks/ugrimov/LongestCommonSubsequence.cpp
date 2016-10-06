@@ -61,13 +61,16 @@ std::string getCommonSequence(int** matrix, std::string& word1, std::string& wor
 		b = matrix[i - 1][j], c = matrix[i][j - 1];
 		int maxAll = max(a, b, c, x);
 
-		if (maxAll == x && x != a && x != b) {
+		if (maxAll == x && x != b && x != c) {
 			output.push_back(word1[i - 1]);
+			output.push_back(word2[j - 1]);
 			i--;
 			j--;
 		} else if (maxAll == a) {
+			output.push_back(word2[j - 1]);
 			j--;
 		} else if (maxAll == b) {
+			output.push_back(word1[i - 1]);
 			i--;
 		}
 	}
