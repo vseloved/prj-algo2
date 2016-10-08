@@ -2,7 +2,7 @@ Montgomery 3222 8618
 Phoenix 3326 1125
 Little Rock 3444 9217
 Sacramento 3834 12129
-Denver] 3944 10459
+Denver 3944 10459
 Hartford 4145 7240
 Dover 3990 7531
 Tallahassee 3026 8416
