@@ -14,6 +14,19 @@ namespace
         return matrix;
     }
 
+    void _OutputMatrix(const TMatrix& i_matrix)
+    {
+        for (const auto& row : i_matrix)
+        {
+            for (const auto& element : row)
+            {
+                std::cout << element << '\t';
+            }
+            std::cout << std::endl;
+        }
+    }
+
+ 
     TMatrix _GetLcsDP(const std::string& i_w1, const std::string& i_w2)
     {
         auto lcs_matrix = _ConstructMatrix(i_w1.size() + 1, i_w2.size() + 1);
@@ -102,16 +115,63 @@ namespace
         return std::make_pair(w1_aligned, w2_aligned);
     }
 
+    std::string _GetLCS(const std::string& i_w1, const std::string& i_w2)
+    {
+        auto lcs_matrix = _GetLcsDP(i_w1, i_w2);
+
+        std::string lcs;
+
+        size_t sz1 = i_w1.size();
+        size_t sz2 = i_w2.size();
+        for (size_t i = 0; i < sz1; ++i)
+        {
+            for (size_t j = 0; j < sz2; ++j)
+            {
+                if (i_w1[i] == i_w2[j] && lcs_matrix[i][j] + 1 == lcs_matrix[i + 1][j + 1])
+                    lcs.push_back(i_w1[i]);
+            }
+        }
+
+        return lcs;
+    }
+
 }
 
 namespace Tests
 {
-    class Test
+    class TestLCS
     {
     public:
-        Test(
-            const std::string& i_w1, const std::string& i_w2,
-            const std::string& i_w1_aligned_expected, const std::string& i_w2_alinged_expected)
+        TestLCS(const std::string& i_w1, const std::string& i_w2, const std::string& i_lcs_expected)
+            : m_w1(i_w1)
+            , m_w2(i_w2)
+            , m_lcs_expected(i_lcs_expected)
+        { }
+
+        bool Run() const
+        {
+            auto lcs = _GetLCS(m_w1, m_w2);
+            bool result = m_lcs_expected == lcs;
+            return result;
+        }
+
+    private:
+        const std::string m_w1;
+        const std::string m_w2;
+        const std::string m_lcs_expected;
+    };
+
+    class TestWordsAlignment
+    {
+    public:
+        TestWordsAlignment(const std::string& i_w1,
+             const std::string& i_w2,
+             const std::string& i_w1_aligned_expected, 
+             const std::string& i_w2_alinged_expected)
+            : m_w1(i_w1)
+            , m_w2(i_w2)
+            , m_w1_expected(i_w1_aligned_expected)
+            , m_w2_expected(i_w2_alinged_expected)
         { }
 
         bool Run() const
@@ -143,12 +203,23 @@ int main(int i_argc, char** i_argv)
     }
     else if (i_argc == 2 && std::string(i_argv[1]) == "--test")
     {
-        Tests::Test test1("abc", "ac", "abc", "a_c");
-        Tests::Test test2("fyord", "world", "fyor_d", "_world");
-        Tests::Test test3("abcd", "abcd", "abcd", "abcd");
+        system("pause");
+
+        Tests::TestLCS test_lcs_1("abc", "ac", "ac");
+        Tests::TestLCS test_lcs_2("fyord", "world", "ord");
+        for (auto& test : { test_lcs_1, test_lcs_2 })
+        {
+            bool result = test.Run();
+            std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
+        }
+
+
+        Tests::TestWordsAlignment test1("abc", "ac", "abc", "a_c");
+        Tests::TestWordsAlignment test2("fyord", "world", "fyor_d", "_world");
+        Tests::TestWordsAlignment test3("abcd", "abcd", "abcd", "abcd");
         
         // taken from https://web.stanford.edu/class/cs124/lec/med.pdf
-        Tests::Test test4(
+        Tests::TestWordsAlignment test4(
             "AGGCTATCACCTGACCTCCAGGCCGATGCCC", "TAGCTATCACGACCGCGGTCGATTTGCCCGAC",
             "_AGGCTATCACCTGACCTCCAGGCCGA__TGCCC___", "TAG_CTATCAC__GACCGC__GGTCGATTTGCCCGAC");
 
