@@ -203,11 +203,10 @@ int main(int i_argc, char** i_argv)
     }
     else if (i_argc == 2 && std::string(i_argv[1]) == "--test")
     {
-        system("pause");
-
         Tests::TestLCS test_lcs_1("abc", "ac", "ac");
         Tests::TestLCS test_lcs_2("fyord", "world", "ord");
-        for (auto& test : { test_lcs_1, test_lcs_2 })
+        Tests::TestLCS test_lcs_3("abcd", "abcd", "abcd");
+        for (auto& test : { test_lcs_1, test_lcs_2, test_lcs_3 })
         {
             bool result = test.Run();
             std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
