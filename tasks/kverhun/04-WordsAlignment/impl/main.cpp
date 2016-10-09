@@ -92,61 +92,55 @@ namespace
     {
         auto dp_matrix = _GetAlignmentDP(i_w1, i_w2);
 
-        _OutputMatrix(dp_matrix);
-
         std::string w1_aligned, w2_aligned;
-        
-        auto fill_words = [&]()
+
+        size_t row = dp_matrix.size() - 1;
+        size_t col = dp_matrix.front().size() - 1;
+
+        while (row > 0 && col > 0)
         {
-            size_t row = dp_matrix.size() - 1;
-            size_t col = dp_matrix.front().size() - 1;
+            auto min_distance = std::min(dp_matrix[row - 1][col - 1], std::min(dp_matrix[row - 1][col], dp_matrix[row][col - 1]));
 
-            while (row > 0 && col > 0)
+            if (min_distance == dp_matrix[row - 1][col - 1])
             {
-                auto min_distance = std::min(dp_matrix[row - 1][col - 1], std::min(dp_matrix[row - 1][col], dp_matrix[row][col - 1]));
+                w1_aligned.push_back(i_w1[row - 1]);
+                w2_aligned.push_back(i_w2[col - 1]);
+                --row;
+                --col;
+            }
+            else if (min_distance == dp_matrix[row][col - 1])
+            {
+                w1_aligned.push_back('_');
+                w2_aligned.push_back(i_w2[col - 1]);
+                --col;
+            }
+            else if (min_distance == dp_matrix[row - 1][col])
+            {
+                w1_aligned.push_back(i_w1[row - 1]);
+                w2_aligned.push_back('_');
+                --row;
+            }
+        }
 
-                if (min_distance == dp_matrix[row-1][col-1])
-                {
-                    w1_aligned.push_back(i_w1[row - 1]);
-                    w2_aligned.push_back(i_w2[col - 1]);
-                    --row;
-                    --col;
-                }
-                else if (min_distance == dp_matrix[row][col-1])
-                {
-                    w1_aligned.push_back('_');
-                    w2_aligned.push_back(i_w2[col - 1]);
-                    --col;
-                }
-                else if (min_distance == dp_matrix[row-1][col])
-                {
-                    w1_aligned.push_back(i_w1[row - 1]);
-                    w2_aligned.push_back('_');
-                    --row;
-                }
-            }
-            
-            if (row == 0)
+        if (row == 0)
+        {
+            while (col > 0)
             {
-                while (col > 0)
-                {
-                    w1_aligned.push_back('_');
-                    w2_aligned.push_back(i_w2[col - 1]);
-                    --col;
-                }
+                w1_aligned.push_back('_');
+                w2_aligned.push_back(i_w2[col - 1]);
+                --col;
             }
-            else if (col == 0)
+        }
+        else if (col == 0)
+        {
+            while (row > 0)
             {
-                while (row > 0)
-                {
-                    w1_aligned.push_back(i_w1[row - 1]);
-                    w2_aligned.push_back('_');
-                    --row;
-                }
+                w1_aligned.push_back(i_w1[row - 1]);
+                w2_aligned.push_back('_');
+                --row;
             }
-            
-        };
-        fill_words();
+        }
+
         std::reverse(w1_aligned.begin(), w1_aligned.end());
         std::reverse(w2_aligned.begin(), w2_aligned.end());
         return std::make_pair(w1_aligned, w2_aligned);
