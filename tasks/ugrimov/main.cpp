@@ -1,47 +1,19 @@
+//
+//  main.cpp
+//  Prjctr
+//
+//  Created by Artem on 22.09.16.
+//  Copyright (c) 2016 Artem. All rights reserved.
+//
+
 #include <iostream>
-#include "CommonSubsequence.h"
-#include "Queue.h"
 
-using namespace std;
+#include "App.hpp"
 
-int main() {
+int main(int argc, const char * argv[]) {
 
-	//CommonSubsequence subsequence("worfld", "fyord");
-	Queue<int> queue;
-
-	queue.add(10);
-	queue.add(2);
-	queue.add(4);
-	queue.add(20);
-	queue.add(1);
-	queue.add(3);
-
-	queue.print();
-
-	cout<<queue.extract()<<endl;
-	cout<<queue.extract()<<endl;
-	cout<<queue.extract()<<endl;
-	cout<<queue.extract()<<endl;
-
-	queue.print();
-
-	return 0;
+    App theApp;
+    
+    return theApp.onExecute();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

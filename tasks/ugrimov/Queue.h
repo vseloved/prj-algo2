@@ -66,12 +66,6 @@ class Queue {
 
 	void heapDown() {
 		//сравниваем с left && right
-//		vector<T> newQueue(elements);
-//		elements.clear();
-//		for (int i = 0; i < newQueue.size(); i++) {
-//			add(newQueue[i]);
-//		}
-
 		for (int i = 0; i < elements.size(); i++) {
 			if (hasLeft(i) && elements[i] > hleft(i)) {
 				std::swap(elements[i], elements[leftIndex(i)]);
@@ -97,6 +91,14 @@ public:
 		heapUp(elements.size() - 1);
 	}
 
+    bool empty() {
+        return elements.size() == 0;
+    }
+    
+    size_t size() {
+        return elements.size();
+    }
+    
 	void print() {
 		for (int i = 0; i < elements.size(); i++) {
 			cout<<elements[i]<<" ";
