@@ -2,9 +2,5 @@ cmake_minimum_required(VERSION 2.8.9)
 project(Algorithms)
 add_executable(Words 02-Words/impl/main.cpp)
 add_executable(TextJustification 03-TextJustification/impl/main.cpp)
-<<<<<<< HEAD
-add_executable(WordsAlignment 04-WordsAlignment/impl/main.cpp)
-=======
 add_executable(LCS 04-LCS/impl/main.cpp)
 add_executable(WordsAlignment 05-WordsAlignment/impl/main.cpp)
->>>>>>> origin/LCS_WordsAlignment_Pullrequest
