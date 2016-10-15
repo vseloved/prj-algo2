@@ -22,11 +22,18 @@ set(CATCH_INCLUDE_DIR ${source_dir}/include CACHE INTERNAL "./catch")
 
 project(Algorithms)
 # Includes Catch in the project:
-include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
-enable_testing(true)  # Enables unit-testing.
 
 add_executable(Words 02-Words/impl/main.cpp)
 add_executable(TextJustification 03-TextJustification/impl/main.cpp)
-add_executable(LCS 04-LCS/impl/main.cpp)
+
+set(LCS_SOURCE_DIR 04-LCS/impl)
+add_library(LCS SHARED ${LCS_SOURCE_DIR}/lcs.cpp ${LCS_SOURCE_DIR}/_Library.h ${LCS_SOURCE_DIR}/lcs.h)
+target_compile_definitions(LCS PRIVATE LCS_LIBRARY)
+
+add_executable(LCS_Tests 04-LCS/unit_tests/lcs_test.cpp)
+target_link_libraries(LCS_Tests PUBLIC LCS)
+
 add_executable(WordsAlignment 05-WordsAlignment/impl/main.cpp)
 
+include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
+enable_testing(true)  # Enables unit-testing.

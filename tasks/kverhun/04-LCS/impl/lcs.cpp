@@ -3,6 +3,8 @@
 #include <string>
 #include <algorithm>
 
+#include "lcs.h"
+
 namespace
 {
     using TMatrix = std::vector<std::vector<size_t>>;
@@ -25,7 +27,7 @@ namespace
             std::cout << std::endl;
         }
     }
-    
+
     TMatrix _GetLcsDP(const std::string& i_w1, const std::string& i_w2)
     {
         auto lcs_matrix = _ConstructMatrix(i_w1.size() + 1, i_w2.size() + 1);
@@ -52,68 +54,6 @@ namespace
 
         return lcs_matrix;
     }
-    
-    std::pair<std::string, std::string> _AlingWords(const std::string& i_w1, const std::string& i_w2)
-    {
-        auto lcs_matrix = _GetLcsDP(i_w1, i_w2);
-
-        enum class Direction { Top, Left, Diag };
-        std::string w1_aligned, w2_aligned;
-        
-        auto fill_words = [&]()
-        {
-            size_t row = lcs_matrix.size() - 1;
-            size_t col = lcs_matrix.front().size() - 1;
-
-            while (row >= 1 && col >= 1)
-            {
-                if (lcs_matrix[row][col] == lcs_matrix[row - 1][col])
-                {
-                    w1_aligned.push_back(i_w1[row - 1]);
-                    w2_aligned.push_back('_');
-                    --row;
-                }
-                else if (lcs_matrix[row][col] == lcs_matrix[row][col - 1])
-                {
-                    w1_aligned.push_back('_');
-                    w2_aligned.push_back(i_w2[col - 1]);
-                    --col;
-                }
-                else if (lcs_matrix[row][col] == lcs_matrix[row - 1][col - 1] + 1)
-                {
-                    w1_aligned.push_back(i_w1[row - 1]);
-                    w2_aligned.push_back(i_w2[col - 1]);
-                    --row;
-                    --col;
-                }
-            }
-            
-            if (row == 0)
-            {
-                while (col >= 1)
-                {
-                    w1_aligned.push_back('_');
-                    w2_aligned.push_back(i_w2[col-1]);
-                    --col;
-                }
-            }
-            else if (col == 0)
-            {
-                while (row >= 1)
-                {
-                    w1_aligned.push_back(i_w1[row-1]);
-                    w2_aligned.push_back('_');
-                    --row;
-                }
-            }
-
-        };
-        fill_words();
-        std::reverse(w1_aligned.begin(), w1_aligned.end());
-        std::reverse(w2_aligned.begin(), w2_aligned.end());
-        return std::make_pair(w1_aligned, w2_aligned);
-    }
-
 
     std::string _GetLCS(const std::string& i_w1, const std::string& i_w2)
     {
@@ -124,15 +64,15 @@ namespace
         size_t sz1 = i_w1.size();
         size_t sz2 = i_w2.size();
         size_t i = sz1, j = sz2;
-        while(i > 0 && j > 0)
+        while (i > 0 && j > 0)
         {
-            if(lcs_matrix[i-1][j-1] + 1 == lcs_matrix[i][j]) // same letter
+            if (lcs_matrix[i - 1][j - 1] + 1 == lcs_matrix[i][j]) // same letter
             {
-                lcs.push_back(i_w1[i-1]);
+                lcs.push_back(i_w1[i - 1]);
                 --i;
                 --j;
             }
-            else if(lcs_matrix[i - 1][j] == lcs_matrix[i][j]) // go from where bigger length came
+            else if (lcs_matrix[i - 1][j] == lcs_matrix[i][j]) // go from where bigger length came
                 --i;
             else
                 --j;
@@ -168,6 +108,7 @@ namespace Tests
     };
 }
 
+
 int main(int i_argc, char** i_argv)
 {
     if (i_argc == 1)
@@ -192,4 +133,9 @@ int main(int i_argc, char** i_argv)
     }
 
     return 0;
+}
+
+std::string LCS::GetLCS(const std::string& i_word1, const std::string& i_word2)
+{
+    return ::_GetLCS(i_word1, i_word2);
 }
