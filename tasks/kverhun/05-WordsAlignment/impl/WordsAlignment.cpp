@@ -3,6 +3,8 @@
 #include <string>
 #include <algorithm>
 
+#include "WordsAlignment.h"
+
 namespace
 {
     using TMatrix = std::vector<std::vector<size_t>>;
@@ -27,32 +29,7 @@ namespace
     }
 
  
-    TMatrix _GetLcsDP(const std::string& i_w1, const std::string& i_w2)
-    {
-        auto lcs_matrix = _ConstructMatrix(i_w1.size() + 1, i_w2.size() + 1);
-
-        auto sz1 = i_w1.size();
-        auto sz2 = i_w2.size();
-
-        for (size_t i = 0; i <= sz1; ++i)
-            lcs_matrix[i][0] = 0;
-        for (size_t i = 0; i <= sz2; ++i)
-            lcs_matrix[0][i] = 0;
-
-        for (size_t i = 1; i <= sz1; ++i)
-            for (size_t j = 1; j <= sz2; ++j)
-            {
-                std::vector<size_t> lengths;
-                lengths.push_back(lcs_matrix[i - 1][j]);
-                lengths.push_back(lcs_matrix[i][j - 1]);
-                if (i_w1[i - 1] == i_w2[j - 1])
-                    lengths.push_back(lcs_matrix[i - 1][j - 1] + 1);
-
-                lcs_matrix[i][j] = *std::max_element(lengths.begin(), lengths.end());
-            }
-
-        return lcs_matrix;
-    }
+    
 
     TMatrix _GetAlignmentDP(const std::string& i_w1, const std::string& i_w2)
     {
@@ -61,11 +38,10 @@ namespace
         size_t sz1 = i_w1.size();
         size_t sz2 = i_w2.size();
         
-        dp_matrix[0][0] = 0;
-        for (size_t i = 1; i <= sz1; ++i)
-            dp_matrix[i][0] = 1;
-        for (size_t j = 1; j <= sz2; ++j)
-            dp_matrix[0][j] = 1;
+        for (size_t i = 0; i <= sz1; ++i)
+            dp_matrix[i][0] = i;
+        for (size_t j = 0; j <= sz2; ++j)
+            dp_matrix[0][j] = j;
 
         for (size_t i = 0; i < sz1; ++i)
         {
@@ -146,51 +122,11 @@ namespace
         return std::make_pair(w1_aligned, w2_aligned);
     }
 
-    std::string _GetLCS(const std::string& i_w1, const std::string& i_w2)
-    {
-        auto lcs_matrix = _GetLcsDP(i_w1, i_w2);
-
-        std::string lcs;
-
-        size_t sz1 = i_w1.size();
-        size_t sz2 = i_w2.size();
-        for (size_t i = 0; i < sz1; ++i)
-        {
-            for (size_t j = 0; j < sz2; ++j)
-            {
-                if (i_w1[i] == i_w2[j] && lcs_matrix[i][j] + 1 == lcs_matrix[i + 1][j + 1])
-                    lcs.push_back(i_w1[i]);
-            }
-        }
-
-        return lcs;
-    }
-
 }
 
 namespace Tests
 {
-    class TestLCS
-    {
-    public:
-        TestLCS(const std::string& i_w1, const std::string& i_w2, const std::string& i_lcs_expected)
-            : m_w1(i_w1)
-            , m_w2(i_w2)
-            , m_lcs_expected(i_lcs_expected)
-        { }
-
-        bool Run() const
-        {
-            auto lcs = _GetLCS(m_w1, m_w2);
-            bool result = m_lcs_expected == lcs;
-            return result;
-        }
-
-    private:
-        const std::string m_w1;
-        const std::string m_w2;
-        const std::string m_lcs_expected;
-    };
+    
 
     class TestWordsAlignment
     {
@@ -242,15 +178,6 @@ int main(int i_argc, char** i_argv)
     }
     else if (i_argc == 2 && std::string(i_argv[1]) == "--test")
     {
-        Tests::TestLCS test_lcs_1("abc", "ac", "ac");
-        Tests::TestLCS test_lcs_2("fyord", "world", "ord");
-        Tests::TestLCS test_lcs_3("abcd", "abcd", "abcd");
-        for (auto& test : { test_lcs_1, test_lcs_2, test_lcs_3 })
-        {
-            bool result = test.Run();
-            std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
-        }
-
         Tests::TestWordsAlignment test1("abc", "ac", "abc", "a_c");
         Tests::TestWordsAlignment test2("fyord", "world", "fyor_d", "_world");
         Tests::TestWordsAlignment test3("abcd", "abcd", "abcd", "abcd");
@@ -261,7 +188,9 @@ int main(int i_argc, char** i_argv)
             "AGGCTATCACCTGACCTCCAGGCCGATGCCC", "TAGCTATCACGACCGCGGTCGATTTGCCCGAC",
             "_AGGCTATCACCTGACCTCCAGGCCGAT__GCCC___", "TAG_CTATCAC__GACCGC__GGTCGATTTGCCCGAC");
 
-        for (auto& test : { test1, test2, test3, test4 })
+        Tests::TestWordsAlignment test5("fyord", "worfld", "fyor__d", "_worfld");
+
+        for (auto& test : { test1, test2, test3, test4, test5 })
         {
             bool result = test.Run();
             std::cout << "Test: " << (result ? "OK" : "FAILED") << std::endl;
@@ -269,4 +198,12 @@ int main(int i_argc, char** i_argv)
     }
 
     return 0;
+}
+
+namespace WordsAlignment
+{
+    std::pair<std::string, std::string> AlingWords(const std::string& i_w1, const std::string& i_w2)
+    {
+        return ::_AlingWords(i_w1, i_w2);
+    }
 }
