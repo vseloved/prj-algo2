@@ -35,6 +35,7 @@ target_compile_definitions(LCS PRIVATE LCS_LIBRARY)
 
 add_executable(LCS_Tests 04-LCS/unit_tests/lcs_test.cpp)
 target_link_libraries(LCS_Tests PUBLIC LCS)
+add_dependencies(LCS_Tests catch)
 ####################################################
 
 ####################################################
@@ -51,6 +52,7 @@ target_compile_definitions(WordsAlignment PRIVATE WORDS_ALIGNMENT_LIBRARY)
 
 add_executable(WordsAlignment_Tests ${WordsAlignment_TEST_DIR}/words_alignment_tests.cpp)
 target_link_libraries(WordsAlignment_Tests PUBLIC WordsAlignment)
+add_dependencies(WordsAlignment_Tests catch)
 ####################################################
 
 include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
