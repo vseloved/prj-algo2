@@ -3,6 +3,8 @@
 #include <string>
 #include <algorithm>
 
+#include "WordsAlignment.h"
+
 namespace
 {
     using TMatrix = std::vector<std::vector<size_t>>;
@@ -196,4 +198,12 @@ int main(int i_argc, char** i_argv)
     }
 
     return 0;
+}
+
+namespace WordsAlignment
+{
+    std::pair<std::string, std::string> AlingWords(const std::string& i_w1, const std::string& i_w2)
+    {
+        return ::_AlingWords(i_w1, i_w2);
+    }
 }
