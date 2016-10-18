@@ -1,0 +1,1 @@
+This is Dijkstra algorithm for shortest way seach.
