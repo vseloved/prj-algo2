@@ -1,0 +1,315 @@
+Montgomery 3222 8618
+Phoenix 3326 1125
+Little Rock 3444 9217
+Sacramento 3834 12129
+Denver 3944 10459
+Hartford 4145 7240
+Dover 3990 7531
+Tallahassee 3026 8416
+Atlanta 3344 8423
+Boise 4337 11611
+Springfield 3947 8939
+Indianapolis 3946 8690
+Des Moines 4135 9336
+Topeka 3920 9540
+Frankfort 3811 8452
+Baton Rouge 3027 9111
+Augusta 4418 6946
+Annapolis 3858 7629
+Boston 4221 7130
+Lansing 4244 8433
+Saint Paul 4457 9360
+Jackson 3218 9010
+Jefferson City 3834 9210
+Helena 4635 1121
+Lincoln 4048 9641
+Carson City 3990 11945
+Concord 4312 7132
+Trenton 4013 7446
+Santa Fe 3540 10556
+Albany 4239 7345
+Raleigh 3546 7838
+Bismarck 4649 10046
+Columbus 3957 8259
+Oklahoma City 3529 9730
+Salem 4456 1231
+Harrisburg 4015 7652
+Providence 4149 7124
+Columbia 3400 811
+Pierre 4422 10020
+Nashville 3609 8647
+Austin 3016 9744
+Salt Lake City 4046 11153
+Montpelier 4415 7234
+Richmond 3732 7726
+Olympia 4702 12254
+Charleston 3820 8136
+Madison 4304 8923
+Cheyenne 4108 10449
+#namedlist
+Springfield-Columbia	16180
+Sacramento-Albany	11466
+Charleston-Indianapolis	2829
+Salem-Nashville	15040
+Columbia-Lansing	10553
+Indianapolis-Austin	3771
+Salt Lake City-Madison	9629
+Atlanta-Tallahassee	7395
+Augusta-Columbus	10820
+Des Moines-Helena	17209
+Atlanta-Providence	6502
+Denver-Charleston	9078
+Concord-Topeka	8670
+Phoenix-Richmond	11394
+Boston-Salt Lake City	7834
+Saint Paul-Raleigh	4692
+Boston-Montgomery	4803
+Lansing-Atlanta	10513
+Indianapolis-Pierre	9163
+Richmond-Sacramento	10470
+Des Moines-Harrisburg	5072
+Pierre-Saint Paul	4955
+Jackson-Trenton	6962
+Providence-Lansing	8817
+Topeka-Helena	15329
+Little Rock-Pierre	4639
+Jefferson City-Trenton	3706
+Jackson-Santa Fe	3814
+Boston-Columbus	8427
+Cheyenne-Bismarck	2749
+Augusta-Montgomery	4048
+Columbus-Augusta	2768
+Lincoln-Pierre	9382
+Helena-Olympia	12959
+Boise-Bismarck	9923
+Sacramento-Carson City	2891
+Lincoln-Bismarck	10324
+Oklahoma City-Lansing	3138
+Madison-Bismarck	6852
+Tallahassee-Raleigh	2841
+Augusta-Baton Rouge	11391
+Boise-Madison	4301
+Little Rock-Saint Paul	9658
+Frankfort-Carson City	4998
+Saint Paul-Tallahassee	7525
+Atlanta-Augusta	11399
+Columbus-Lincoln	6472
+Salt Lake City-Austin	2397
+Indianapolis-Columbia	12260
+Hartford-Pierre	7528
+Austin-Charleston	9132
+Jefferson City-Montgomery	2720
+Salem-Atlanta	7893
+Hartford-Bismarck	3846
+Boise-Lansing	4591
+Dover-Cheyenne	8117
+Jefferson City-Montpelier	5499
+Cheyenne-Boston	7221
+Frankfort-Atlanta	9119
+Saint Paul-Pierre	6297
+Columbus-Bismarck	2331
+Salt Lake City-Montgomery	5612
+Tallahassee-Little Rock	1957
+Topeka-Phoenix	12647
+Boston-Montpelier	4513
+Boise-Cheyenne	4876
+Richmond-Harrisburg	575
+Phoenix-Madison	13163
+Frankfort-Oklahoma City	2789
+Madison-Albany	4024
+Nashville-Oklahoma City	3998
+Salem-Lansing	9322
+Springfield-Jackson	8554
+Columbus-Helena	13494
+Providence-Phoenix	12739
+Providence-Atlanta	2759
+Pierre-Baton Rouge	8935
+Frankfort-Madison	6236
+Baton Rouge-Indianapolis	2957
+Montgomery-Richmond	5398
+Atlanta-Concord	11262
+Albany-Denver	6363
+Austin-Phoenix	8848
+Richmond-Raleigh	3958
+Atlanta-Denver	6162
+Jackson-Madison	5961
+Austin-Hartford	10823
+Montpelier-Concord	2493
+Austin-Columbus	8148
+Cheyenne-Baton Rouge	11168
+Springfield-Providence	5675
+Saint Paul-Lincoln	4283
+Harrisburg-Annapolis	7977
+Indianapolis-Montpelier	7373
+Jefferson City-Indianapolis	3067
+Sacramento-Charleston	11470
+Richmond-Salem	14168
+Baton Rouge-Tallahassee	5037
+Montpelier-Saint Paul	2139
+Madison-Lansing	1452
+Atlanta-Lincoln	2925
+Lansing-Concord	9640
+Trenton-Columbia	13371
+Phoenix-Boston	9538
+Santa Fe-Bismarck	3366
+Providence-Columbia	10120
+Indianapolis-Providence	5965
+Columbia-Phoenix	10201
+Harrisburg-Springfield	4042
+Dover-Sacramento	9059
+Jefferson City-Carson City	5787
+Little Rock-Santa Fe	5654
+Annapolis-Phoenix	11406
+Phoenix-Indianapolis	12336
+Salt Lake City-Indianapolis	5005
+Richmond-Cheyenne	10071
+Indianapolis-Lansing	579
+Trenton-Des Moines	6677
+Richmond-Atlanta	4219
+Topeka-Albany	6458
+Santa Fe-Albany	11927
+Cheyenne-Columbus	12144
+Springfield-Bismarck	10264
+Springfield-Boise	7420
+Springfield-Denver	3850
+Raleigh-Madison	9349
+Little Rock-Helena	13897
+Indianapolis-Albany	8301
+Richmond-Saint Paul	3563
+Concord-Nashville	9753
+Olympia-Hartford	12703
+Salem-Dover	12442
+Santa Fe-Helena	15015
+Helena-Columbus	16105
+Atlanta-Austin	9066
+Jefferson City-Harrisburg	6652
+Raleigh-Annapolis	1948
+Pierre-Concord	6727
+Lansing-Richmond	5446
+Topeka-Salem	12896
+Dover-Boston	9018
+Harrisburg-Baton Rouge	7298
+Hartford-Jefferson City	5750
+Des Moines-Olympia	5631
+Augusta-Saint Paul	10801
+Hartford-Santa Fe	13296
+Des Moines-Bismarck	8286
+Charleston-Salem	10376
+Boise-Hartford	14013
+Frankfort-Phoenix	11517
+Bismarck-Montgomery	9388
+Indianapolis-Charleston	8609
+Bismarck-Madison	8156
+Jefferson City-Madison	8159
+Salem-Augusta	11426
+Salem-Pierre	14930
+Annapolis-Augusta	10310
+Sacramento-Bismarck	5151
+Atlanta-Montgomery	3932
+Tallahassee-Charleston	5794
+Oklahoma City-Boise	7281
+Dover-Saint Paul	11164
+Phoenix-Raleigh	8418
+Boston-Baton Rouge	4433
+Boise-Nashville	7039
+Albany-Annapolis	6742
+Providence-Montgomery	6740
+Sacramento-Augusta	10383
+Albany-Charleston	5569
+Carson City-Des Moines	5044
+Lincoln-Olympia	7905
+Saint Paul-Montpelier	4388
+Sacramento-Montpelier	11571
+Topeka-Columbus	2588
+Annapolis-Charleston	8770
+Montpelier-Baton Rouge	11499
+Baton Rouge-Boston	11640
+Trenton-Nashville	10897
+Oklahoma City-Trenton	6877
+Madison-Columbus	4929
+Tallahassee-Springfield	1858
+Montpelier-Montgomery	2170
+Salt Lake City-Lincoln	5575
+Albany-Indianapolis	9038
+Salt Lake City-Cheyenne	5869
+Dover-Salem	9548
+Frankfort-Des Moines	1386
+Frankfort-Columbia	13261
+Annapolis-Carson City	7084
+Montpelier-Atlanta	5483
+Olympia-Nashville	4409
+Raleigh-Jefferson City	3549
+Montpelier-Boston	2041
+Indianapolis-Boise	3190
+Concord-Madison	4397
+Indianapolis-Santa Fe	3439
+Madison-Raleigh	1600
+Jackson-Phoenix	9283
+Hartford-Richmond	1074
+Dover-Springfield	10902
+Oklahoma City-Santa Fe	2636
+Columbia-Tallahassee	14971
+Bismarck-Indianapolis	8621
+Lincoln-Indianapolis	3734
+Boise-Olympia	6316
+Bismarck-Boise	5728
+Lincoln-Oklahoma City	2751
+Raleigh-Montpelier	4709
+Columbus-Concord	5387
+Raleigh-Pierre	5841
+Montgomery-Oklahoma City	1403
+Jefferson City-Boise	7799
+Sacramento-Oklahoma City	4937
+Columbus-Little Rock	5767
+Sacramento-Hartford	7093
+Frankfort-Albany	10698
+Trenton-Raleigh	8126
+Concord-Tallahassee	8386
+Harrisburg-Topeka	2919
+Boise-Richmond	6612
+Oklahoma City-Albany	6291
+Lincoln-Austin	2675
+Carson City-Montpelier	14696
+Cheyenne-Nashville	3245
+Pierre-Bismarck	5906
+Annapolis-Olympia	7684
+Lincoln-Sacramento	5730
+Jefferson City-Hartford	11945
+Lansing-Topeka	10665
+Des Moines-Oklahoma City	7148
+Montpelier-Oklahoma City	12058
+Madison-Denver	6763
+Atlanta-Pierre	6465
+Lincoln-Albany	10354
+Montgomery-Atlanta	8388
+Madison-Cheyenne	3295
+Helena-Montgomery	15721
+Bismarck-Des Moines	1890
+Concord-Boston	1031
+Montpelier-Topeka	5235
+Salt Lake City-Jackson	5774
+Baton Rouge-Sacramento	9830
+Baton Rouge-Atlanta	4275
+Frankfort-Santa Fe	8384
+Little Rock-Nashville	9968
+Montgomery-Austin	3360
+Montgomery-Nashville	7500
+Harrisburg-Sacramento	4896
+Hartford-Indianapolis	6200
+Austin-Montgomery	1709
+Augusta-Boise	9355
+Richmond-Boston	6711
+Oklahoma City-Baton Rouge	4564
+Harrisburg-Columbia	16648
+Jefferson City-Little Rock	750
+Lincoln-Augusta	11707
+Providence-Helena	15364
+Boise-Harrisburg	8071
+Phoenix-Lansing	15291
+Montgomery-Salt Lake City	10226
+Trenton-Jefferson City	5566
+Madison-Atlanta	7629
+Boston-Bismarck	11766
+Augusta-Columbia	11158
+Atlanta-Salem	16545
+
