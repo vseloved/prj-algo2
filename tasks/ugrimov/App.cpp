@@ -10,6 +10,7 @@
 #include <chrono>
 #include "Visualizer.h"
 #include "ShortestPaths.hpp"
+#include "SpanningTree.hpp"
 #include "App.hpp"
 
 App::App() {
@@ -82,8 +83,10 @@ void App::OnEvent(SDL_Event* Event) {
 //            wordsJustifier = new WordsJustifier(strings, 15);
 //            wordsJustifier->justifyProjector();
 //            wordsJustifier->print();
-            DijkstraSearch ugs;
-            ugs.process(0, 8);
+            AStar ugs;
+            ugs.process(0, 46);
+            
+//            SpanningTree s;
             
             break;
     }

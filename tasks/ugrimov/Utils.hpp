@@ -40,8 +40,10 @@ public:
         ss.str(s);
         std::string item;
         while (getline(ss, item, delim)) {
-            item.erase(item.rfind("\r"));
-            elems.push_back(item);
+            item.erase(std::remove(item.begin(), item.end(), '\r'));
+            if (item.size() > 0) {
+            	elems.push_back(item);
+            }
         }
     }
     
@@ -51,6 +53,25 @@ public:
         return elems;
     }
     
+};
+
+struct Edge {
+    int A{0};
+    int B{0};
+    int weight{0};
+    Edge(int A, int B, int w) {
+        this->A = A;
+        this->B = B;
+        weight = w;
+    }
+    
+    bool operator<(const Edge& other) {
+        return weight < other.weight;
+    }
+    
+    bool operator>(const Edge& other) {
+        return weight > other.weight;
+    }
 };
 
 

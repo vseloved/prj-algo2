@@ -10,6 +10,7 @@
 #define ShortestPaths_hpp
 
 #include <vector>
+#include <map>
 #include <initializer_list>
 
 
@@ -46,6 +47,9 @@ public:
 
 class DijkstraSearch {
     static const int SIZE = 10;
+    
+    std::vector<int> paths;
+    
     std::vector< std::vector<std::pair<int, int> > > list {
         { {1, 10}, {4, 3}, {5, 2}, {9, 12}},
         { {3, 2}, {4, 1} },
@@ -60,12 +64,39 @@ class DijkstraSearch {
     };
     
     int findMinWeightIndex(std::vector<std::pair<int, int> > pairs);
+    void printWay(int u);
     
 public:
-    DijkstraSearch() {};
+    DijkstraSearch() : paths(SIZE, 0) {};
     ~DijkstraSearch() {};
     
     void process(int from, int to);
 };
+
+
+
+
+
+
+
+
+class AStar {
+    static const int SIZE = 46;
+    std::map<std::string, int> nameToNumber;
+    std::map<int, std::string> numberToName;
+    
+    std::vector<std::vector<int>> matrix;
+    
+    std::vector<std::vector<std::pair<int, int> > > list;
+    
+    void readContent();
+    
+public:
+    AStar();
+    void process(int from, int to);
+    int heuristic(int from, int to);
+};
+
+
 
 #endif /* ShortestPaths_hpp */
