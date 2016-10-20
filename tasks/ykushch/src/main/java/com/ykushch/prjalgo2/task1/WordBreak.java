@@ -86,4 +86,51 @@ public class WordBreak {
 
         return resultBreakDownList;
     }
+
+    /**
+     * Breaks words using dynamic programming approach. Case when dictionary is larger,
+     * than the sentence itself.
+     *
+     * @param s sentence without spaces
+     * @param dict dictionary with unique words
+     * @return sentence with spaces based on dictionary
+     */
+    public String breakWordWithLargeDictionary(String s, Set<String> dict) {
+        List<String> resultList = new ArrayList<>();
+        List<String> memoList = new ArrayList<>();
+        isSentenceBrokenIntoWords(s, dict, resultList, memoList);
+        return resultList.stream()
+                .collect(joining(" "));
+    }
+
+    private boolean isSentenceBrokenIntoWords(String sentence, Set<String> dict,
+                                              List<String> resultList, List<String> memoList) {
+        if(isSentenceValid(sentence)) {
+            return false;
+        }
+
+
+        if(memoList.contains(sentence)) {
+            return false;
+        }
+
+        String word = "";
+        for(int i = 0; i < sentence.length(); i++) {
+            word += sentence.charAt(i);
+            if(dict.contains(word)) {
+                resultList.add(word);
+                String restPart = sentence.substring(i + 1);
+                if(isSentenceBrokenIntoWords(restPart, dict, resultList, memoList)) {
+                    return true;
+                }
+            }
+        }
+
+        memoList.add(sentence);
+        return false;
+    }
+
+    private boolean isSentenceValid(String sentence) {
+        return sentence == null || sentence.length() == 0;
+    }
 }

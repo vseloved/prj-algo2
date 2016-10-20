@@ -3,7 +3,8 @@ package com.ykushch.prjalgo2.task4;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class DistanceRecursive {
+public class EditDistanceRecursive {
+
     public static int computeEditDistance(String srcString, String destString) {
         int srcStrLen = srcString.length();
         int destStrLen = destString.length();
@@ -44,6 +45,7 @@ public class DistanceRecursive {
         char destLastChar = dest.charAt(destLen - 1);
 
         if (areLastCharsEqual(srcLastChar, destLastChar)) {
+            System.out.println(String.format("%s, %s", String.valueOf(srcLastChar), String.valueOf(destLastChar)));
             return findLongestCommonSequence(src.substring(0, srcLen - 1),
                     dest.substring(0, destLen - 1)) + src.charAt(srcLen - 1);
         } else {
