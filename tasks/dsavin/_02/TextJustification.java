@@ -6,7 +6,7 @@ public class TextJustification {
         int length = words[i].length();
         for (int k = i + 1; k <= j; k++)
             length += words[k].length() + 1;
-        return length > w ? Integer.MAX_VALUE : (int)Math.pow((w - length), 2);
+        return length > w ? Integer.MAX_VALUE : (int)Math.pow((w - length), 3);
     }
 
     public static String justify(String [] words, int w) {

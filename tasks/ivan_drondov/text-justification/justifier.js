@@ -45,12 +45,12 @@ class Justifier {
 					len += this.words[k].length;
 					if (len > this.limit) continue outer; // if more than limit, then Infinity.
 				}
-				this.costMatrix[i][j] = this.bedness(len);
+				this.costMatrix[i][j] = this.badness(len);
 			}
 		}
 	}
 
-	bedness(len) {
+	badness(len) {
 		return Math.pow(this.limit - len, 3);
 	}
 
