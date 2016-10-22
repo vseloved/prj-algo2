@@ -23,7 +23,6 @@ set(CATCH_INCLUDE_DIR ${source_dir}/include CACHE INTERNAL "./catch")
 project(Algorithms)
 # Includes Catch in the project:
 
-add_executable(Words 02-Words/impl/main.cpp)
 add_executable(TextJustification 03-TextJustification/impl/main.cpp)
 
 ####################################################
