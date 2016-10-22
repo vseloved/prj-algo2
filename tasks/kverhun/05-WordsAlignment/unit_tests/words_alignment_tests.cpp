@@ -19,18 +19,6 @@ TEST_CASE("WordsAlignment")
 
     SECTION("Test1")
     {
-        //Tests::TestWordsAlignment test1("abc", "ac", "abc", "a_c");
-        //Tests::TestWordsAlignment test2("fyord", "world", "fyor_d", "_world");
-        //Tests::TestWordsAlignment test3("abcd", "abcd", "abcd", "abcd");
-
-        //// taken from https://web.stanford.edu/class/cs124/lec/med.pdf
-        ////  changed to equivalent alignment in terms of edit distance
-        //Tests::TestWordsAlignment test4(
-        //    "AGGCTATCACCTGACCTCCAGGCCGATGCCC", "TAGCTATCACGACCGCGGTCGATTTGCCCGAC",
-        //    "_AGGCTATCACCTGACCTCCAGGCCGAT__GCCC___", "TAG_CTATCAC__GACCGC__GGTCGATTTGCCCGAC");
-
-        //Tests::TestWordsAlignment test5("fyord", "worfld", "fyor__d", "_worfld");
-
         WA_TEST("abc", "ac", "abc", "a_c");
     }
     SECTION("Test2")
