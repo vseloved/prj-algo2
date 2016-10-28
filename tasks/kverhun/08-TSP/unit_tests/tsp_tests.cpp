@@ -21,25 +21,25 @@ namespace
     }
 }
 
-//TEST_CASE("TSP_Case1")
-//{
-//    TSP::TPoints points = { { 1., 1. },{ 2., 2. },{ 2., 1. },{ 1., 2. } };
-//    
-//    TSP tsp(points);
-//
-//    auto path = tsp.GenerateSomePath();
-//    REQUIRE(path.size() == points.size());
-//
-//    auto pt1 = tsp.GetPoint(path[0]);
-//    for (size_t i = 0; i < points.size(); ++i)
-//    {
-//        REQUIRE(points[i].x == tsp.GetPoint(path[i]).x);
-//        REQUIRE(points[i].y == tsp.GetPoint(path[i]).y);
-//    }
-//
-//}
+TEST_CASE("TSP_InfrastructureTest")
+{
+    TSP::TPoints points = { { 1., 1. },{ 2., 2. },{ 2., 1. },{ 1., 2. } };
+    
+    TSP tsp(points);
 
-TEST_CASE("TSP_Case2")
+    auto path = tsp.GenerateSomePath();
+    REQUIRE(path.size() == points.size());
+
+    auto pt1 = tsp.GetPoint(path[0]);
+    for (size_t i = 0; i < points.size(); ++i)
+    {
+        REQUIRE(points[i].x == tsp.GetPoint(path[i]).x);
+        REQUIRE(points[i].y == tsp.GetPoint(path[i]).y);
+    }
+
+}
+
+TEST_CASE("TSP_Case1")
 {
     TSP::TPoints points = { { 1., 1. },{ 2., 2. },{ 2., 1. },{ 1., 2. } };
 
@@ -75,7 +75,7 @@ TEST_CASE("TSP_Case2")
 }
 
 
-TEST_CASE("TSP_Case3")
+TEST_CASE("TSP_Case2")
 {
     TSP::TPoints points = { { 1., 1. },{ 1., 2. },{ 2., 1. },{ 2., 2. }, {3., 1.}, {3., 2.} };
 
