@@ -67,8 +67,6 @@ add_library(TSP SHARED
     ${TSP_SOURCE_DIR}/TSP.cpp
 )
 target_compile_definitions(TSP PRIVATE TSP_LIBRARY)
-target_link_libraries(TSP Graphs)
-add_dependencies(TSP Graphs)
 
 add_executable(TSP_Tests ${TSP_TEST_DIR}/tsp_tests.cpp)
 target_link_libraries(TSP_Tests PUBLIC TSP)
