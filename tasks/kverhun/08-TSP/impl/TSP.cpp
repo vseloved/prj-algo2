@@ -100,9 +100,12 @@ TSP::TPath TSP::GenerateBetterPath(const TSP::TPath& i_path) const
 TSP::TPath TSP::GenerateBestPathStartingFrom(const TSP::TPath& i_path) const
 {
     auto current_path = i_path;
-    while (GenerateBetterPath(current_path) != current_path)
+
+    auto better_path = GenerateBetterPath(current_path);
+    while (better_path != current_path)
     {
-        current_path = GenerateBetterPath(current_path);
+        current_path = better_path;
+        better_path = GenerateBetterPath(current_path);
     }
     return current_path;
 }
