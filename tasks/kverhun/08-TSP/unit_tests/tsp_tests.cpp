@@ -1,4 +1,4 @@
-#define CATCH_CONFIG_MAIN
+
 #include <catch.hpp>
 
 #include "../impl/TSP.h"
@@ -99,3 +99,4 @@ TEST_CASE("TSP_Case2")
     std::cout << std::endl << std::endl;
 
 }
+

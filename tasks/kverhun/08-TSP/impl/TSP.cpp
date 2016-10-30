@@ -22,6 +22,8 @@ namespace
         std::cout << std::endl;
         std::cout << "Distance: " << i_distance << std::endl << std::endl;
     }
+
+
 }
 
 TSP::TSP(const TSP::TPoints& i_points)
@@ -47,6 +49,11 @@ const TSP::TMatrix& TSP::GetDistanceMatrix() const
 TSP::Point TSP::GetPoint(size_t i_index) const
 {
     return m_points[i_index];
+}
+
+const TSP::TPoints & TSP::GetPoints() const
+{
+    return m_points;
 }
 
 TSP::TPath TSP::GenerateSomePath() const

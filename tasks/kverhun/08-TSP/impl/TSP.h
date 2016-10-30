@@ -23,6 +23,7 @@ public:
     const TMatrix& GetDistanceMatrix() const;
 
     Point GetPoint(size_t i_index) const;
+    const TPoints& GetPoints() const;
 
     TPath GenerateSomePath() const;
 
