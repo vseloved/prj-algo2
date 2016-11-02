@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Graph
+namespace Graph.Graph
 {
     public class DepthFirstSearch
     {
@@ -8,7 +8,7 @@ namespace Graph
         private readonly int[] _edgeTo;
         private readonly int _source;
 
-        public DepthFirstSearch(Graph_List g, int source)
+        public DepthFirstSearch(GraphList g, int source)
         {
             _visited = new bool[g.V()];
             _edgeTo = new int[g.V()];
@@ -22,7 +22,7 @@ namespace Graph
             dfs(g, source);
         }
 
-        private void dfs(Graph_List g, int v)
+        private void dfs(GraphList g, int v)
         {
             _visited[v] = true;
 

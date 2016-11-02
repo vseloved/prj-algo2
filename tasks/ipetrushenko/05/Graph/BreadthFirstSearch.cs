@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Graph
+namespace Graph.Graph
 {
     public class BreadthFirstSearch
     {
@@ -8,7 +8,7 @@ namespace Graph
         private readonly int[] _edgeTo;
         private readonly int _source;
 
-        public BreadthFirstSearch(Graph_List g, int source)
+        public BreadthFirstSearch(GraphList g, int source)
         {
             _visited = new bool[g.V()];
             _edgeTo = new int[g.V()];
@@ -22,7 +22,7 @@ namespace Graph
             bfs(g, source);
         }
 
-        private void bfs(Graph_List g, int vertex)
+        private void bfs(GraphList g, int vertex)
         {
             Queue<int> queue = new Queue<int>();
             queue.Enqueue(vertex);

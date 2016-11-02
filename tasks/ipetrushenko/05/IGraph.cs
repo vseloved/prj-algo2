@@ -4,7 +4,7 @@ namespace Graph
 {
     interface IGraph
     {
-        // get adjacent vertices to u
+        // get adjacent vertices To u
         IEnumerable<int> Adj(int u);
 
         // add an edge between u and v

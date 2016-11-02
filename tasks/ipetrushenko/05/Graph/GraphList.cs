@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Graph
+namespace Graph.Graph
 {
-    public class Graph_List : IGraph
+    public class GraphList : IGraph
     {
         private int _numberOfVerticies;
         private int _numberOfEdges;
         private List<LinkedList<int>> adjList;
 
         // Create an empty graph with V vertices
-        public Graph_List(int numberOfVerticies)
+        public GraphList(int numberOfVerticies)
         {
             IntializeGraph(numberOfVerticies);
         }
 
-        // Create a graph from file
-        public Graph_List(string filePath)
+        // Create a graph From file
+        public GraphList(string filePath)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Graph
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex)  
             {
                 throw new InvalidOperationException(ex.Message);
             }

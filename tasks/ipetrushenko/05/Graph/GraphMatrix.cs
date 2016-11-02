@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace graph
+namespace Graph.Graph
 {
-    public class Graph_Matrix
+    public class GraphMatrix
     {
         private int _numberOfVerticies;
         private int _numberOfEdges;
         private int[,] adjMatrix;
 
         // Create an empty graph with V vertices
-        public Graph_Matrix(int numberOfVerticies)
+        public GraphMatrix(int numberOfVerticies)
         {
             IntializeGraph(numberOfVerticies);
         }
 
-        // Create a graph from file
-        public Graph_Matrix(string filePath)
+        // Create a graph From file
+        public GraphMatrix(string filePath)
         {
             try
             {
