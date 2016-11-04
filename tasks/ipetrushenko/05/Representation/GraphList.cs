@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Graph.Graph
+namespace Graph.Representation
 {
     public class GraphList : IGraph
     {

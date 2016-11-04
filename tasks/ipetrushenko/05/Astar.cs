@@ -3,13 +3,13 @@ using Graph.Representation;
 
 namespace Graph
 {
-    public class Dijkstra : IShortestPath
+    public class Astar : IShortestPath
     {
         private readonly double[] distTo;
         private readonly DirectedWeightedEdge[] edgeTo;
-        private readonly MinPQ<double> pq; 
+        private readonly MinPQ<double> pq;
 
-        public Dijkstra(EdgeWeightedDigraph graph, int source)
+        public Astar(EdgeWeightedDigraph graph, int source, int target)
         {
             pq = new MinPQ<double>(graph.V());
             edgeTo = new DirectedWeightedEdge[graph.V()];
@@ -21,39 +21,23 @@ namespace Graph
             }
             distTo[source] = 0.0;
 
-            dijkstra(graph, 0);
+            AstarSP(graph, 0, target);
         }
 
-        // Relax(u, v, w):
-        // if(d[v] > d[u] + w(u, v))
-        //    d[v] = d[u] + w(u, v)
-
-        private void dijkstra(EdgeWeightedDigraph graph, int vertex)
+        private void AstarSP(EdgeWeightedDigraph graph, int vertex, int target)
         {
             pq.Insert(vertex, 0.0);
 
             while (!pq.IsEmpty())
             {
                 int v = pq.DelMin();
+
+                if (v == target) { break; }
+
                 foreach (DirectedWeightedEdge edge in graph.Adj(v))
                 {
-                    Relax(edge);
+                    Relax(edge, target);
                 }
-            }
-        }
-
-        private void Relax(DirectedWeightedEdge edge)
-        {
-            var u = edge.To();
-            var v = edge.From();
-
-            if (distTo[u] > distTo[v] + edge.Weight())
-            {
-                distTo[u] = distTo[v] + edge.Weight();
-                edgeTo[u] = edge;
-            
-                if (pq.Contains(u)) { pq.DecreaseKey(u, distTo[u]); }
-                else                { pq.Insert(u, distTo[u]); }
             }
         }
 
@@ -65,6 +49,22 @@ namespace Graph
         public double DistTo(int v)
         {
             return distTo[v];
+        }
+
+        private void Relax(DirectedWeightedEdge edge, int target)
+        {
+            var destinationToTarget = distTo[target];
+            var u = edge.To();
+            var v = edge.From();
+
+            if (distTo[u] > distTo[v] + edge.Weight())
+            {
+                distTo[u] = distTo[v] + edge.Weight();
+                edgeTo[u] = edge;
+
+                if (pq.Contains(u)) { pq.DecreaseKey(u, destinationToTarget - distTo[u]); }
+                else                { pq.Insert(u,      destinationToTarget - distTo[u]); }
+            }
         }
 
         public IEnumerable<DirectedWeightedEdge> PathTo(int v)

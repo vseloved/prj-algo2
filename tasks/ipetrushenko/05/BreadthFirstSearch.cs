@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Graph.Representation;
 
-namespace Graph.Graph
+namespace Graph
 {
     public class BreadthFirstSearch
     {
@@ -19,10 +20,10 @@ namespace Graph.Graph
                 _edgeTo[i] = -1;
             }
 
-            bfs(g, source);
+            Bfs(g, source);
         }
 
-        private void bfs(GraphList g, int vertex)
+        private void Bfs(GraphList g, int vertex)
         {
             Queue<int> queue = new Queue<int>();
             queue.Enqueue(vertex);
@@ -43,14 +44,14 @@ namespace Graph.Graph
             }
         }
 
-        public bool hasPathTo(int v)
+        public bool HasPathTo(int v)
         {
             return _visited[v];
         }
 
-        public Stack<int> pathTo(int v)
+        public Stack<int> PathTo(int v)
         {
-            if (!hasPathTo(v)) { return null; }
+            if (!HasPathTo(v)) { return null; }
 
             Stack<int> path = new Stack<int>();
             for (int x = v; x != _source; x = _edgeTo[x])

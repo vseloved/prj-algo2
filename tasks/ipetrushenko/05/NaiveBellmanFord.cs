@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Graph.Representation;
 
 namespace Graph
 {
-    public class NaiveBellmanFord
+    public class NaiveBellmanFord : IShortestPath
     {
         private readonly double[] _distTo;
         private readonly DirectedWeightedEdge[] _edgeTo;

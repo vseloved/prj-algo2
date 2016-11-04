@@ -1,5 +1,5 @@
 ﻿
-namespace Graph
+namespace Graph.Representation
 {
     public class DirectedWeightedEdge
     {

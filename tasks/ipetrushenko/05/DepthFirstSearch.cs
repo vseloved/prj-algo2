@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Graph.Representation;
 
-namespace Graph.Graph
+namespace Graph
 {
     public class DepthFirstSearch
     {
@@ -19,10 +20,10 @@ namespace Graph.Graph
                 _edgeTo[i] = -1;
             }
 
-            dfs(g, source);
+            Dfs(g, source);
         }
 
-        private void dfs(GraphList g, int v)
+        private void Dfs(GraphList g, int v)
         {
             _visited[v] = true;
 
@@ -31,19 +32,19 @@ namespace Graph.Graph
                 if (!_visited[u])
                 {
                     _edgeTo[u] = v;
-                    dfs(g, u);
+                    Dfs(g, u);
                 }
             }     
         }
 
-        public bool hasPathTo(int v)
+        public bool HasPathTo(int v)
         {
             return _visited[v];
         }
 
-        public Stack<int> pathTo(int v)
+        public Stack<int> PathTo(int v)
         {
-            if (!hasPathTo(v)) { return null; }
+            if (!HasPathTo(v)) { return null; }
 
             Stack<int> path = new Stack<int>();
             for (int x = v; x != _source; x = _edgeTo[x])

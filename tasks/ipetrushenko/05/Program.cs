@@ -1,5 +1,5 @@
 ﻿using System;
-using Graph.Graph;
+using Graph.Representation;
 
 namespace Graph
 {
@@ -34,19 +34,26 @@ namespace Graph
             Console.WriteLine();
 
             var dj = new Dijkstra(graph, 0);
-            PrintSPDijkstra(dj, graph, 0);
+            PrintShortestPath(dj, graph, 0, graph.V());
 
             Console.WriteLine();
 
             var bf = new NaiveBellmanFord(graph, 0);
-            PrintSPBellmanFord(bf, graph, 0);
+            PrintShortestPath(bf, graph, 0, graph.V());
+
+            Console.WriteLine();
+
+            var a = new Astar(graph, 0, 3);
+            PrintShortestPath(a, graph, 0, 3);
         }
 
-        public static void PrintSPBellmanFord(NaiveBellmanFord sp, EdgeWeightedDigraph g, int source)
+        public static void PrintShortestPath(IShortestPath sp, EdgeWeightedDigraph g, int source, int destination)
         {
             // print shortest path
             for (int t = 0; t < g.V(); t++)
             {
+                if (t == destination) { break; }
+
                 if (sp.HasPathTo(t))
                 {
                     Console.Write("{0} to {1} is {2}  ", source, t, sp.DistTo(t));
@@ -63,26 +70,6 @@ namespace Graph
             }
         }
 
-        public static void PrintSPDijkstra(Dijkstra sp, EdgeWeightedDigraph g, int source)
-        {
-            // print shortest path
-            for (int t = 0; t < g.V(); t++)
-            {
-                if (sp.HasPathTo(t))
-                {
-                    Console.Write("{0} to {1} is {2}  ", source, t, sp.DistTo(t));
-                    foreach (var e in sp.PathTo(t))
-                    {
-                        Console.Write("[{0}-{1}, {2}] ", e.From(), e.To(), e.Weight());
-                    }
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.Write("{0} to {1} no path\n", source, t);
-                }
-            }
-        }
 
         public static void DisplayGraph(GraphList g)
         {
@@ -120,9 +107,9 @@ namespace Graph
             for (int v = 0; v < g.V(); v++)
             {
                 Console.Write(vertex + " To " + v + ": ");
-                if (search.hasPathTo(v))
+                if (search.HasPathTo(v))
                 {
-                    foreach (int x in search.pathTo(v))
+                    foreach (int x in search.PathTo(v))
                     {
                         if (x == vertex) { Console.Write(x); }
                         else             { Console.Write("-" + x); }
@@ -143,9 +130,9 @@ namespace Graph
             for (int v = 0; v < g.V(); v++)
             {
                 Console.Write(vertex + " To " + v + ": ");
-                if (search.hasPathTo(v))
+                if (search.HasPathTo(v))
                 {
-                    foreach (int x in search.pathTo(v))
+                    foreach (int x in search.PathTo(v))
                     {
                         if (x == vertex) { Console.Write(x); }
                         else { Console.Write("-" + x); }

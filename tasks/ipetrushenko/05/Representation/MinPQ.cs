@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Graph
+namespace Graph.Representation
 {
     public class MinPQ<T> where T: IComparable<T>
     {
