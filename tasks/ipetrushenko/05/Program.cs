@@ -5,25 +5,27 @@ namespace Graph
 {
     class Program
     {
+        //Input File:
+        // 8
+        // 15
+        // 4 5 0.35
+        // 5 4 0.35
+        // 4 7 0.37
+        // 5 7 0.28
+        // 7 5 0.28
+        // 5 1 0.32
+        // 0 4 0.38
+        // 0 2 0.26
+        // 7 3 0.39
+        // 1 3 0.29
+        // 2 7 0.34
+        // 6 2 0.40
+        // 3 6 0.52
+        // 6 0 0.58
+        // 6 4 0.93
+
         static void Main(string[] args)
         {
-            // 8
-            // 15
-            // 4 5 0.35
-            // 5 4 0.35
-            // 4 7 0.37
-            // 5 7 0.28
-            // 7 5 0.28
-            // 5 1 0.32
-            // 0 4 0.38
-            // 0 2 0.26
-            // 7 3 0.39
-            // 1 3 0.29
-            // 2 7 0.34
-            // 6 2 0.40
-            // 3 6 0.52
-            // 6 0 0.58
-            // 6 4 0.93
             const string filePath = @"C:\Users\1\Desktop\tinyEWD.txt";
 
             var graph = new EdgeWeightedDigraph(filePath);
@@ -31,11 +33,37 @@ namespace Graph
 
             Console.WriteLine();
 
-            Dijkstra sp = new Dijkstra(graph, 0);
-            PrintShortestPath(sp, graph, 0);
+            var dj = new Dijkstra(graph, 0);
+            PrintSPDijkstra(dj, graph, 0);
+
+            Console.WriteLine();
+
+            var bf = new NaiveBellmanFord(graph, 0);
+            PrintSPBellmanFord(bf, graph, 0);
         }
 
-        public static void PrintShortestPath(Dijkstra sp, EdgeWeightedDigraph g, int source)
+        public static void PrintSPBellmanFord(NaiveBellmanFord sp, EdgeWeightedDigraph g, int source)
+        {
+            // print shortest path
+            for (int t = 0; t < g.V(); t++)
+            {
+                if (sp.HasPathTo(t))
+                {
+                    Console.Write("{0} to {1} is {2}  ", source, t, sp.DistTo(t));
+                    foreach (var e in sp.PathTo(t))
+                    {
+                        Console.Write("[{0}-{1}, {2}] ", e.From(), e.To(), e.Weight());
+                    }
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.Write("{0} to {1} no path\n", source, t);
+                }
+            }
+        }
+
+        public static void PrintSPDijkstra(Dijkstra sp, EdgeWeightedDigraph g, int source)
         {
             // print shortest path
             for (int t = 0; t < g.V(); t++)
