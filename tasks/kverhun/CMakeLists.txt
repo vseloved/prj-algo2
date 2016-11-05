@@ -54,5 +54,29 @@ target_link_libraries(WordsAlignment_Tests PUBLIC WordsAlignment)
 add_dependencies(WordsAlignment_Tests catch)
 ####################################################
 
+####################################################
+# TSP
+####################################################
+set(TSP_SOURCE_DIR 08-TSP/impl)
+set(TSP_TEST_DIR 08-TSP/unit_tests) 
+
+add_library(TSP SHARED
+    ${TSP_SOURCE_DIR}/_Library.h
+    ${TSP_SOURCE_DIR}/TSP.h
+    ${TSP_SOURCE_DIR}/TSP.cpp
+    ${TSP_SOURCE_DIR}/GeneticAlgo.h
+    ${TSP_SOURCE_DIR}/GeneticAlgo.cpp
+)
+target_compile_definitions(TSP PRIVATE TSP_LIBRARY)
+
+add_executable(TSP_Tests 
+    ${TSP_TEST_DIR}/tsp_tests.cpp
+    ${TSP_TEST_DIR}/tsp_genetic_tests.cpp
+)
+target_link_libraries(TSP_Tests PUBLIC TSP)
+add_dependencies(TSP_Tests TSP)
+
+####################################################
+
 include_directories(${CATCH_INCLUDE_DIR} ${COMMON_INCLUDES})
 enable_testing(true)  # Enables unit-testing.
