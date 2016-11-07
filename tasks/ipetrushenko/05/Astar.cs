@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Graph.Representation;
 
 namespace Graph
@@ -53,7 +54,6 @@ namespace Graph
 
         private void Relax(DirectedWeightedEdge edge, int target)
         {
-            var destinationToTarget = distTo[target];
             var u = edge.To();
             var v = edge.From();
 
@@ -62,11 +62,18 @@ namespace Graph
                 distTo[u] = distTo[v] + edge.Weight();
                 edgeTo[u] = edge;
 
-                if (pq.Contains(u)) { pq.DecreaseKey(u, destinationToTarget - distTo[u]); }
-                else                { pq.Insert(u,      destinationToTarget - distTo[u]); }
+                if (pq.Contains(u)) { pq.DecreaseKey(u, heuristic(target, u) + distTo[u]); }
+                else                { pq.Insert(u,      heuristic(target, u) + distTo[u]); }
             }
         }
 
+        private static int heuristic(int target, int current)
+        {
+            //# Manhattan distance on a square grid
+            //return Math.Abs(target.x - current.x) + Math.Abs(target.y - current.y);
+            return 0;
+        }
+        
         public IEnumerable<DirectedWeightedEdge> PathTo(int v)
         {
             if (!HasPathTo(v)) { return null; }
