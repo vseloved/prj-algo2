@@ -21,7 +21,7 @@ def make_dist_matrix(points):
     return np.sqrt( (xx - xx.T)**2 + (yy - yy.T)**2 )
 
 if __name__ == "__main__":
-    d = DataReader('../../capitals.txt')
+    d = DataReader('../../../capitals.txt')
     points = d.readPoints()
     matrix = make_dist_matrix(points)
     path = solve_tsp(matrix)
