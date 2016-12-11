@@ -14,7 +14,7 @@ let Edge = function (source, sink, capacity) {
 let Flow = function () {
     this.edges = {};
 
-    this.findEdgeInPath = function (path, edge, residual) {
+    this.findEdgeInPath = (path, edge, residual) => {
         for (let i = 0; i < path.length; i++) {
             if (path[i][0] == edge && path[i][1] == residual) {
                 return true;
@@ -52,8 +52,7 @@ let Flow = function () {
             return path;
         }
 
-        for (let i = 0; i < this.edges[source].length; i++) {
-            let edge = this.edges[source][i];
+        for (let edge of this.edges[source]) {
             let residual = edge.capacity - edge.flow;
 
             if (residual > 0 && !this.findEdgeInPath(path, edge, residual)) {
