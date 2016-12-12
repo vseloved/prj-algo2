@@ -8,7 +8,8 @@ function LCS(x, y) {
     const n = y.length;
     const c = [];
 
-    let i, j;
+    let i;
+    let j;
 
     for (i = 0; i <= m; i++) {
         c.push([0]);

@@ -51,6 +51,6 @@ function knapsack(items, capacity) {
     return {"maxValue": weightMatrix[itemsLength][capacity], "result": result};
 }
 
-var result = knapsack([{w: 12, b: 1}, {w: 1, b: 6}, {w: 6, b: 3}], 10);
+const result = knapsack([{w: 12, b: 1}, {w: 1, b: 6}, {w: 6, b: 3}], 10);
 
 console.log(result);
